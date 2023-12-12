@@ -52,7 +52,9 @@ fetch(url, {
           }
         })
         .then(data => {
-          console.log(data);
+          // console.log(data);
+          let sortedData = data.sort((a, b) => b.uniques - a.uniques);
+          console.log(sortedData);
         })
         .catch(error => {
           console.error('Error:', error);
