@@ -60,6 +60,7 @@ fetch(url, {
           //sorting the data from most unique purchases to least for csv file cleanliness
           let sortedData = data.sort((a, b) => b.uniques - a.uniques);
           let currentCampaignId = campaignIds[i];
+          console.log(`logging sorted data for ${currentCampaignId}`);
           console.log(sortedData);
           
           //write sorted conversion data to csv file
@@ -72,9 +73,10 @@ fetch(url, {
               { id: 'value', title: 'Total Value' },
               { id: 'count', title: 'Total Count' },
             ],
+            append: true
           });
 
-          const records = [];
+          let records = [];
           for (let j = 0; j < sortedData.length; j++) {
           
             records.push({
@@ -95,6 +97,7 @@ fetch(url, {
         .catch(error => {
           console.error('Error:', error);
         });
+      
     };
     
   })
