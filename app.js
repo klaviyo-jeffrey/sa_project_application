@@ -8,7 +8,10 @@ const API_KEY = process.env.PRIV_API_KEY || require('./config').PRIV_API_KEY;
 let campaignIds = [];
 const orderMetricId = 'Y3c8te'
 
-const url = 'https://a.klaviyo.com/api/campaigns/?filter=and(equals(messages.channel%2C%22email%22)%2Cgreater-or-equal(created_at%2C2023-01-01)%2Cless-or-equal(created_at%2C2023-12-31))&fields[campaign]=send_time%2Cname';
+// get EMAIL campaigns created between Jan 1 2023 and Dec 31 2023 (one year)
+// so that we can push the Campaign IDs into an array and use the IDs in our ajax
+// call to get conversions
+const url = 'https://a.klaviyo.com/api/campaigns/?filter=and(equals(messages.channel,"email"),greater-or-equal(created_at,2023-01-01),less-or-equal(created_at,2023-12-31))&fields[campaign]=send_time,name';
 const headers = {
   'Authorization': `Klaviyo-API-Key ${API_KEY}`,
   'accept': 'application/json',
@@ -54,9 +57,12 @@ fetch(url, {
           }
         })
         .then(data => {
+          //sorting the data from most unique purchases to least for csv file cleanliness
           let sortedData = data.sort((a, b) => b.uniques - a.uniques);
           let currentCampaignId = campaignIds[i];
           console.log(sortedData);
+          
+          //write sorted conversion data to csv file
           const csvWriter = createCsvWriter({
             path: '/Users/jeffrey.vaz/scratch-projects/sa_project_application/records.csv',
             header: [
