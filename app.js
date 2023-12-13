@@ -7,7 +7,7 @@ const fs = require('fs');
 const API_KEY = process.env.PRIV_API_KEY || require('./config').PRIV_API_KEY;
 
 let campaignIds = [];
-const orderMetricId = 'Y3c8te';
+const orderMetricId = 'PUrgmq';
 
 // need to use this to check if a file is empty. If so, add the headers to csv
 // https://www.geeksforgeeks.org/node-js-fs-readfilesync-method/
@@ -54,8 +54,8 @@ fetch(url, {
       const ajaxHeaders = {
         'Content-Type': 'application/json',
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36',
-        'X-Csrftoken': 'Gklf8Ob2dYVtWSPYttP9S7Rti5rkTmKBfA7hZNyK0tP525dIKOBAsIbs6XMfXvXS',
-        'Cookie': '__kla_id=eyJjaWQiOiJPRFV5T1Rka016SXROR1JpTkMwMFltUmtMVGcxT0RBdE1ETm1OR0ZoWTJRNU5UVXciLCIkZmlyc3RfbmFtZSI6IkplZmZyZXkiLCIkbGFzdF9uYW1lIjoiVmF6IElJIiwiSXNTdGFmZiI6dHJ1ZSwiQWNjb3VudElEIjoiOUJYM3doIiwiY3VycmVudF9jb21wYW55X2lkIjoiOUJYM3doIiwiJGV4Y2hhbmdlX2lkIjoiTWM2bDdMREFWMDZmOTVTeVpjRUxIR3R4TDZLeU1XQ0h0anlZb3VGbWdVST0uOUJYM3doIiwiJHJlZmVycmVyIjp7InRzIjoxNjg0NTM4NDI5LCJ2YWx1ZSI6Imh0dHBzOi8vd3d3LmtsYXZpeW8uY29tL3N0YWZmL2FjY291bnQvTkpEVFdzL2ludGVncmF0aW9ucyIsImZpcnN0X3BhZ2UiOiJodHRwczovL3d3dy5rbGF2aXlvLmNvbS9zdGFmZi9hY2NvdW50L05KRFRXcy9pbnRlZ3JhdGlvbi8xNDkxNjM5In0sIiRsYXN0X3JlZmVycmVyIjp7InRzIjoxNzAxOTk2Nzc3LCJ2YWx1ZSI6IiIsImZpcnN0X3BhZ2UiOiJodHRwczovL3d3dy5rbGF2aXlvLmNvbS9wcm9maWxlLzAxSEgzRTk5NVc2MkU0OFo2RFlBQlBWQlIxIn19; __kla_off=1; _uetsid=ac9c0aa0986e11ee9af9a3a3a7f317eb; _uetvid=29c96820e9dd11edb2b11b1bf62450ea; _gat=1; kl_csrftoken=rwHlPFpKwIMrFkae2Kmuf2MVZpUXoSPHgaVi8TlXBi4lna6kh1pEfDwx4XfuLTqS; kl_sessionid=mkgo6m0jrzdpnjf7q1ggpruu11gginwm;'
+        'X-Csrftoken': 'nUzBFIrcvLEUYqj0fR4bwsyPh6e22AirRwdMp8RyNfHladagLUI055iNpiMxOSa0',
+        'Cookie': '__kla_id=eyJjaWQiOiJPRFV5T1Rka016SXROR1JpTkMwMFltUmtMVGcxT0RBdE1ETm1OR0ZoWTJRNU5UVXciLCIkZmlyc3RfbmFtZSI6IkplZmZyZXkiLCIkbGFzdF9uYW1lIjoiVmF6IElJIiwiSXNTdGFmZiI6dHJ1ZSwiQWNjb3VudElEIjoiOUJYM3doIiwiY3VycmVudF9jb21wYW55X2lkIjoiOUJYM3doIiwiJGV4Y2hhbmdlX2lkIjoiTWM2bDdMREFWMDZmOTVTeVpjRUxIR3R4TDZLeU1XQ0h0anlZb3VGbWdVST0uOUJYM3doIiwiJHJlZmVycmVyIjp7InRzIjoxNjg0NTM4NDI5LCJ2YWx1ZSI6Imh0dHBzOi8vd3d3LmtsYXZpeW8uY29tL3N0YWZmL2FjY291bnQvTkpEVFdzL2ludGVncmF0aW9ucyIsImZpcnN0X3BhZ2UiOiJodHRwczovL3d3dy5rbGF2aXlvLmNvbS9zdGFmZi9hY2NvdW50L05KRFRXcy9pbnRlZ3JhdGlvbi8xNDkxNjM5In0sIiRsYXN0X3JlZmVycmVyIjp7InRzIjoxNzAxOTk2Nzc3LCJ2YWx1ZSI6IiIsImZpcnN0X3BhZ2UiOiJodHRwczovL3d3dy5rbGF2aXlvLmNvbS9wcm9maWxlLzAxSEgzRTk5NVc2MkU0OFo2RFlBQlBWQlIxIn19; __kla_off=1; _ga_Z17EH27CY4=GS1.2.1702485563.43.0.1702485563.0.0.0; _uetsid=ac9c0aa0986e11ee9af9a3a3a7f317eb; _uetvid=29c96820e9dd11edb2b11b1bf62450ea; __utma=222405697.1752348139.1661966007.1701481215.1702494466.38; __utmc=222405697; kl_csrftoken=nUzBFIrcvLEUYqj0fR4bwsyPh6e22AirRwdMp8RyNfHladagLUI055iNpiMxOSa0; kl_sessionid=yi5a1q4dicspdnuchwffk15fzdxy0lko;'
       };
       fetch(ajaxUrl, {
         method: 'GET',
