@@ -6,6 +6,7 @@ const fs = require('fs');
 
 const API_KEY = process.env.PRIV_API_KEY || require('./config').PRIV_API_KEY;
 
+//you'll need to update the metric ID from your Klaviyo account
 const orderMetricId = 'PUrgmq';
 // you'll need to grab the kl_sessionid from the Network tab after logging into Klaviyo
 const klSessionId = 'kl_sessionid=7bukjruzniio9c95rie4h1qo2dg3cz2d;'
