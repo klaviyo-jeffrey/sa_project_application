@@ -6,7 +6,7 @@ There are both API endpoints and custom scripts that allow customers enhanced vi
 
 Lastly, each Campaign has a "conversions" tab (ex. https://www.klaviyo.com/campaign/01HGEZVYDWJV92R4XR307YGGQ1/reports/conversions) that can show the names of the products purchases, the unique and total count for purchasers, and total revenue generated from each product. However, this report only exists in the Klaviyo app UI, and cannot be exported.
 
-The scipt in this project allows customers to view the above conversion data for each Campaign, and allows them to export it to a CSV file. The advantages here are
+The script in this project allows customers to view the above conversion data for each Campaign, and allows them to export it to a CSV file. The advantages here are
 - Klaviyo customers no longer need to navigate to each Campaign and adjust the conversion settings. This would be especially tedious if they had many Campaigns
 - Klaviyo customers no longer need to rely on the UI to analyze this data. By having it in a CSV file, they can analyze the data elsewhere. This script also provides the grounds to sending this conversion data to external sources if the customer does not want it in a CSV.
 
