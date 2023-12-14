@@ -7,6 +7,8 @@ const fs = require('fs');
 const API_KEY = process.env.PRIV_API_KEY || require('./config').PRIV_API_KEY;
 
 const orderMetricId = 'PUrgmq';
+// you'll need to grab the kl_sessionid from the Network tab after logging into Klaviyo
+const klSessionId = 'kl_sessionid=7bukjruzniio9c95rie4h1qo2dg3cz2d;'
 
 // need to use this to check if a file is empty. If so, add the headers to csv
 // https://www.geeksforgeeks.org/node-js-fs-readfilesync-method/
@@ -100,9 +102,7 @@ getCampaigns()
       let ajaxUrl = `https://www.klaviyo.com/ajax/campaign/${campaignIds[i]}/reports/conversions?dimension=Name&statistic=${orderMetricId}`;
       const ajaxHeaders = {
         'Content-Type': 'application/json',
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36',
-        'X-Csrftoken': 'nUzBFIrcvLEUYqj0fR4bwsyPh6e22AirRwdMp8RyNfHladagLUI055iNpiMxOSa0',
-        'Cookie': '__kla_id=eyJjaWQiOiJPRFV5T1Rka016SXROR1JpTkMwMFltUmtMVGcxT0RBdE1ETm1OR0ZoWTJRNU5UVXciLCIkZmlyc3RfbmFtZSI6IkplZmZyZXkiLCIkbGFzdF9uYW1lIjoiVmF6IElJIiwiSXNTdGFmZiI6dHJ1ZSwiQWNjb3VudElEIjoiOUJYM3doIiwiY3VycmVudF9jb21wYW55X2lkIjoiOUJYM3doIiwiJGV4Y2hhbmdlX2lkIjoiTWM2bDdMREFWMDZmOTVTeVpjRUxIR3R4TDZLeU1XQ0h0anlZb3VGbWdVST0uOUJYM3doIiwiJHJlZmVycmVyIjp7InRzIjoxNjg0NTM4NDI5LCJ2YWx1ZSI6Imh0dHBzOi8vd3d3LmtsYXZpeW8uY29tL3N0YWZmL2FjY291bnQvTkpEVFdzL2ludGVncmF0aW9ucyIsImZpcnN0X3BhZ2UiOiJodHRwczovL3d3dy5rbGF2aXlvLmNvbS9zdGFmZi9hY2NvdW50L05KRFRXcy9pbnRlZ3JhdGlvbi8xNDkxNjM5In0sIiRsYXN0X3JlZmVycmVyIjp7InRzIjoxNzAxOTk2Nzc3LCJ2YWx1ZSI6IiIsImZpcnN0X3BhZ2UiOiJodHRwczovL3d3dy5rbGF2aXlvLmNvbS9wcm9maWxlLzAxSEgzRTk5NVc2MkU0OFo2RFlBQlBWQlIxIn19; __kla_off=1; _ga_Z17EH27CY4=GS1.2.1702485563.43.0.1702485563.0.0.0; _uetsid=ac9c0aa0986e11ee9af9a3a3a7f317eb; _uetvid=29c96820e9dd11edb2b11b1bf62450ea; __utmc=222405697; kl_csrftoken=EYOwTeDn4J1WNIQcaKUDNn570ntyEsTP0ENb3Ao3VYcNwvhBztSbLu5g4CtxwaBQ; kl_sessionid=nxixs40q87c0fyup7hhkjgpkb3lk5k5f;'
+        'Cookie': klSessionId
       };
       fetch(ajaxUrl, {
         method: 'GET',
@@ -112,7 +112,8 @@ getCampaigns()
           if (response.status === 200) {
             return response.json();
           } else {
-            // If the response status is not 200, skip the iteration
+            // If the response status is not 200, skip the iteration. 
+            // we'll respond with a 400 error if a Campaign doesn't have attributions
             console.log(`No attributions for Campaign ID ${campaignIds[i]}. See response below`);
             throw new Error(`Request failed. Status: ${response.status}`);
           }
